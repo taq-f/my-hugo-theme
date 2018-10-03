@@ -1,0 +1,19 @@
+<footer>
+  <div class="column categories">
+    <a href="{{ "/categories/" | relLangURL }}"><strong>Categories</strong></a>
+    <ul>
+      {{ range $order, $taxonomy := (first ( .Site.Params.amountCategoriesInFooter | default 7 ) .Site.Taxonomies.categories.ByCount) }}
+      <li>
+        <a href="{{ (print "/categories/" ($taxonomy.Name | urlize)) | relLangURL }}">{{ $taxonomy.Name | humanize }}
+          ({{ $taxonomy.Count }})
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  <div class="column social-media">
+    {{ with .Site.Params.github }}
+    <a href="{{ . }}" target="_blank"><i class="fab fa-github"></i></a>
+    {{ end }}
+  </div>
+</footer>
